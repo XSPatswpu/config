@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: config
+  cloud:
+    # config-server从远端git获取配置，需要配置git信息
+    config:
+      server:
+        git:
+          uri: https://github.com/XSPatswpu/config-repository
+          username: XSPatswpu
+          password:
+          basedir: /Users/xiangshaopeng/IdeaProjects/cherry_config
+server:
+  port: 8890
+# config-server作为eureka的discovery需要在eureka-server上注册服务
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8762/eureka/
+# config-server 需要暴露接口提供远端git访问
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
